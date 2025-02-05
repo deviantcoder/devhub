@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     'users.apps.UsersConfig',
+
+    'cities_light',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +90,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+
+
+# cities_light configuration
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en']
+CITIES_LIGHT_INCLUDE_COUNTRIES = ['UA']
+CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPLC', 'PPLA', 'PPLA2']
 
 
 # Database

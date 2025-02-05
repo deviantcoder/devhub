@@ -1,6 +1,9 @@
 from uuid import uuid4
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import FileExtensionValidator
+from utils.validators import IMAGE_EXTENSIONS, size_validator
+from cities_light.models import Country, City
 
 
 def upload_to(instance, filename):
@@ -12,11 +15,20 @@ class Profile(models.Model):
     
     display_name = models.CharField(max_length=100, null=True, blank=True)
     bio = models.CharField(max_length=150, null=True, blank=True)
-    location = models.CharField(max_length=100, null=True, blank=True)
+    
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True, blank=True)
+    city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True)
     
     about_info = models.TextField(null=True, blank=True)
 
-    image = models.ImageField(default='default/default_pfp.png', upload_to=upload_to)
+    image = models.ImageField(
+        default='default/default_pfp.png',
+        upload_to=upload_to,
+        validators=[
+            FileExtensionValidator(allowed_extensions=IMAGE_EXTENSIONS),
+            size_validator
+        ]
+    )
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
