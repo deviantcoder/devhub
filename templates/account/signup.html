@@ -1,0 +1,46 @@
+{% extends 'layouts/blank.html' %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center mt-4">
+    <div class="card shadow p-4" style="width: 400px;">
+        <h4 class="text-center mb-3">Sign Up</h4>
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label"><i class="fas fa-user-circle"></i> Username</label>
+                    {{ form.username }}
+                </div>
+                <div class="col">
+                    <label class="form-label"><i class="fas fa-envelope"></i> Email</label>
+                    {{ form.email }}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-lock"></i> Password</label>
+                {{ form.password1 }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-lock"></i> Confirm Password</label>
+                {{ form.password2 }}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 radius-md">Register</button>
+
+            <div class="text-center mt-3">
+                <small>Already have an account? <a href="{% url 'account_login' %}">Login</a></small>
+            </div>
+
+            <hr>
+
+            {% include 'socialaccount/snippets/provider_list.html' %}
+            
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

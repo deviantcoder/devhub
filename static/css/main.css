@@ -1,0 +1,11 @@
+.radius-sm {
+    border-radius: 10px;
+}
+
+.radius-md {
+    border-radius: 20px;
+}
+
+.radius-lg {
+    border-radius: 50px;
+}
