@@ -9,11 +9,14 @@ def upload_to(instance, filename):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
+    display_name = models.CharField(max_length=100, null=True, blank=True)
+    bio = models.CharField(max_length=150, null=True, blank=True)
+    location = models.CharField(max_length=100, null=True, blank=True)
+    
+    about_info = models.TextField(null=True, blank=True)
 
     image = models.ImageField(default='default/default_pfp.png', upload_to=upload_to)
-
-    display_name = models.CharField(max_length=100, null=True, blank=True)
-    about_info = models.TextField(null=True, blank=True)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

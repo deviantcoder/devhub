@@ -1,3 +1,8 @@
+body {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #F8FAFD;
+}
+
 .radius-sm {
     border-radius: 10px;
 }
@@ -8,4 +13,59 @@
 
 .radius-lg {
     border-radius: 50px;
+}
+
+.profile-card {
+    border: 1px solid #e1e1e1;
+    padding: 20px;
+    border-radius: 8px;
+}
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 20px auto;
+    border: 5px solid rgb(35, 189, 213);
+}
+.social-icons a {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    color: #333;
+    text-decoration: none;
+}
+.social-icons a:hover {
+    color: #007bff;
+}
+.project-card {
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.project-image {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+.project-info {
+    padding: 15px;
+}
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.skills-list span {
+    font-weight: bold;
+    background-color: #e9e9fd;
+    border-radius: 50px;
+    padding: 10px 20px;
+    /* border: 1px solid #ccc; */
+}
+.project-tag {
+    font-size: 13px;
+    color: #468191;
+    background-color: #cff5ff;
+    padding: 5px;
+    border-radius: 20px;
 }
