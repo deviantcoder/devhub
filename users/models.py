@@ -39,3 +39,13 @@ class Profile(models.Model):
     
     def get_name(self):
         return self.display_name if self.display_name else self.user.username
+    
+    def get_location(self):
+        data = [
+            self.city.name if self.city else None,
+            self.country.name if self.country else None
+        ]
+        return ', '.join(filter(None, data))
+        
+    def get_bio(self):
+        return self.bio if self.bio else ''

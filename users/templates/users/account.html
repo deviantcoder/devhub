@@ -5,21 +5,26 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
-            <div class="profile-card text-center shadow">
+            <div class="profile-card text-center shadow position-relative p-3">
+                <a href="{% url 'users:edit_profile' %}" class="position-absolute top-0 end-0 m-3 text-decoration-none text-muted">
+                    <i class="fas fa-edit fa-lg"></i>
+                </a>
+            
                 <img src="{{ profile.image.url }}" alt="Profile Picture" class="profile-image">
                 <h3 class="text-center">{{ profile.get_name }}</h3>
                 <p class="text-center text-muted">@{{ profile.user.username }}</p>
-                <p>{{ profile.bio }}</p>
-                <p>{{ profile.location }}</p>
-                
+                <p>{{ profile.get_bio }}</p>
+                <p>{{ profile.get_location }}</p>
+            
                 <div class="social-icons text-center mb-3">
                     <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
                     <a href="#"><i class="fab fa-github fa-lg"></i></a>
                     <a href="#"><i class="fab fa-linkedin fa-lg"></i></a>
                 </div>
-
+            
                 <button class="btn btn-primary radius-md w-100">Send Message</button>
             </div>
+            
         </div>
 
         <div class="col-md-8">
