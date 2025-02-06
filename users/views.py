@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponse
 from .models import Profile
-from .forms import ProfileForm
+from .forms import *
 from cities_light.models import City
 
 

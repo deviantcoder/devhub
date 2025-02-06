@@ -30,6 +30,8 @@ class Profile(models.Model):
         ]
     )
 
+    skills = models.ManyToManyField('Skill')
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     id = models.UUIDField(default=uuid4, unique=True, editable=False, primary_key=True)
@@ -49,3 +51,21 @@ class Profile(models.Model):
         
     def get_bio(self):
         return self.bio if self.bio else ''
+
+
+class SkillCategory(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    id = models.UUIDField(default=uuid4, unique=True, editable=False, primary_key=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Skill(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    category = models.ForeignKey(SkillCategory, on_delete=models.CASCADE, related_name='skills')
+
+    id = models.UUIDField(default=uuid4, unique=True, editable=False, primary_key=True)
+
+    def __str__(self):
+        return self.name

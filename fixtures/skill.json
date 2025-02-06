@@ -1,0 +1,250 @@
+[
+{
+    "model": "users.skill",
+    "pk": "09aa336c-2637-4c64-9048-f23ec68c72d0",
+    "fields": {
+        "name": "Adobe XD",
+        "category": "54b95d90-387b-40d9-875a-aaec74df912f"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "127d2580-516a-4428-839b-7c50de4c3bf2",
+    "fields": {
+        "name": "PostgreSQL",
+        "category": "ab26c74f-3aa5-45b1-b2cb-0ec7d2f070cf"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "14d46f0a-da38-4f0c-b92d-645d5a8ed289",
+    "fields": {
+        "name": "Ruby",
+        "category": "51e9ebc8-4513-4811-bacf-5dcc40f2cf31"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "18f360a4-71e3-4519-b192-94ee1c30144e",
+    "fields": {
+        "name": "JavaScript",
+        "category": "acc58a85-0042-4e29-af6c-96e6bb05d784"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "19bd7007-b584-41ef-8282-b6fe68066ff4",
+    "fields": {
+        "name": "SQLite",
+        "category": "ab26c74f-3aa5-45b1-b2cb-0ec7d2f070cf"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "1a13733f-2a9c-4de4-9a45-b0537286b07a",
+    "fields": {
+        "name": "Vue.js",
+        "category": "acc58a85-0042-4e29-af6c-96e6bb05d784"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "26bdb3a2-e92f-4531-aff5-c58f9f157788",
+    "fields": {
+        "name": "React",
+        "category": "acc58a85-0042-4e29-af6c-96e6bb05d784"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "364d9cdb-d532-49e3-b431-89894af15c65",
+    "fields": {
+        "name": "Flask",
+        "category": "51e9ebc8-4513-4811-bacf-5dcc40f2cf31"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "3783f595-54b7-47db-8384-8645e1b2ad38",
+    "fields": {
+        "name": "Go",
+        "category": "51e9ebc8-4513-4811-bacf-5dcc40f2cf31"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "3cedb7b5-9b73-433f-9175-e0a9e5e226de",
+    "fields": {
+        "name": "Redis",
+        "category": "ab26c74f-3aa5-45b1-b2cb-0ec7d2f070cf"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "4149b0e3-e480-4946-b3a8-b64c3d53b024",
+    "fields": {
+        "name": "Figma",
+        "category": "54b95d90-387b-40d9-875a-aaec74df912f"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "4f13f69f-39b6-4d9f-9240-16b02201c16f",
+    "fields": {
+        "name": "CryEngine",
+        "category": "823a0538-e4ae-4c6c-b5bb-8b5fa30599f8"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "64e7e926-7f32-4da7-839d-002e51acb735",
+    "fields": {
+        "name": "CSS",
+        "category": "acc58a85-0042-4e29-af6c-96e6bb05d784"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "650e7a29-7195-4a83-8559-8b983253f95f",
+    "fields": {
+        "name": "Node.js",
+        "category": "51e9ebc8-4513-4811-bacf-5dcc40f2cf31"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "6cc08049-fbf5-4495-bf6c-11062c209d1f",
+    "fields": {
+        "name": "Godot",
+        "category": "823a0538-e4ae-4c6c-b5bb-8b5fa30599f8"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "720586ad-f3c1-410e-9194-c68a0ce7605a",
+    "fields": {
+        "name": "HTML",
+        "category": "acc58a85-0042-4e29-af6c-96e6bb05d784"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "7a799be2-aa6a-4ba6-8a97-414af735b9cb",
+    "fields": {
+        "name": "Kubernetes",
+        "category": "369ea204-93b2-4326-a052-02f08cc25f8c"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "7bf5ef97-1017-4f70-b1cc-0df10020ea46",
+    "fields": {
+        "name": "Unity",
+        "category": "823a0538-e4ae-4c6c-b5bb-8b5fa30599f8"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "8fc883c3-a4aa-43cd-b3c1-a365bc168632",
+    "fields": {
+        "name": "Angular",
+        "category": "acc58a85-0042-4e29-af6c-96e6bb05d784"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "920a1e2b-8fb1-40a4-90ac-123446f063b5",
+    "fields": {
+        "name": "TypeScript",
+        "category": "acc58a85-0042-4e29-af6c-96e6bb05d784"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "adac5239-cbc5-4afc-ba2c-32be8ee21c1b",
+    "fields": {
+        "name": "MySQL",
+        "category": "ab26c74f-3aa5-45b1-b2cb-0ec7d2f070cf"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "afede512-d498-45ef-bb52-632578514f0e",
+    "fields": {
+        "name": "MongoDB",
+        "category": "ab26c74f-3aa5-45b1-b2cb-0ec7d2f070cf"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "bc7c13ae-ff14-49d0-8191-5c1c1c7da6b0",
+    "fields": {
+        "name": "Vagrant",
+        "category": "369ea204-93b2-4326-a052-02f08cc25f8c"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "c339346c-521a-4cbb-acb2-09680bd16f19",
+    "fields": {
+        "name": "Wireframing",
+        "category": "54b95d90-387b-40d9-875a-aaec74df912f"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "c53d820f-872e-439f-99a5-81dd8f86e0a3",
+    "fields": {
+        "name": "Docker",
+        "category": "369ea204-93b2-4326-a052-02f08cc25f8c"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "cd84ccec-432e-4945-bd5d-5a3b0a843317",
+    "fields": {
+        "name": "PHP",
+        "category": "51e9ebc8-4513-4811-bacf-5dcc40f2cf31"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "dccf0928-33cc-4dd2-a433-bdb63e17dd6d",
+    "fields": {
+        "name": "InVision",
+        "category": "54b95d90-387b-40d9-875a-aaec74df912f"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "df7712f6-6d60-4c84-89bc-3580b81fa613",
+    "fields": {
+        "name": "Unreal Engine",
+        "category": "823a0538-e4ae-4c6c-b5bb-8b5fa30599f8"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "eac28c39-8a9c-4c37-98f7-ea518008fe2c",
+    "fields": {
+        "name": "Python",
+        "category": "51e9ebc8-4513-4811-bacf-5dcc40f2cf31"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "f9bea243-49c9-493e-b0c9-bebb07f1d47e",
+    "fields": {
+        "name": "Java",
+        "category": "51e9ebc8-4513-4811-bacf-5dcc40f2cf31"
+    }
+},
+{
+    "model": "users.skill",
+    "pk": "fd9467a3-03dd-4c62-a109-96310d7abf49",
+    "fields": {
+        "name": "Django",
+        "category": "51e9ebc8-4513-4811-bacf-5dcc40f2cf31"
+    }
+}
+]

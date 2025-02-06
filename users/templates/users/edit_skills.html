@@ -1,0 +1,37 @@
+{% extends 'layouts/box.html' %}
+
+{% block content %}
+    
+<form method="post">
+    {% csrf_token %}
+    
+    {{ formset.management_form }}
+
+    <div id="formset-container">
+        {% for form in formset %}
+            <div class="skill-form">
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <button type="button" id="add-skill">Добавить скилл</button>
+    <button type="submit">Сохранить</button>
+</form>
+
+<script>
+document.getElementById("add-skill").addEventListener("click", function() {
+    let formsetContainer = document.getElementById("formset-container");
+    let totalForms = document.getElementById("id_form-TOTAL_FORMS");
+    let formIndex = totalForms.value;
+
+    let newForm = document.querySelector(".skill-form").cloneNode(true);
+    newForm.innerHTML = newForm.innerHTML.replace(/__prefix__/g, formIndex);
+    
+    formsetContainer.appendChild(newForm);
+    totalForms.value = parseInt(formIndex) + 1;
+});
+</script>
+
+
+{% endblock content %}

@@ -1,6 +1,8 @@
+import uuid
 from django import forms
 from allauth.account.forms import LoginForm, SignupForm
-from .models import Profile
+from django.forms import inlineformset_factory
+from .models import *
 from cities_light.models import Country, City
 
 
@@ -33,7 +35,7 @@ class ProfileForm(forms.ModelForm):
     )
     city = forms.ModelChoiceField(
         queryset=City.objects.none(),
-        required=False,    
+        required=False  
     )
 
     class Meta:

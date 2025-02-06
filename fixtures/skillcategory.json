@@ -1,0 +1,44 @@
+[
+{
+    "model": "users.skillcategory",
+    "pk": "369ea204-93b2-4326-a052-02f08cc25f8c",
+    "fields": {
+        "name": "DevOps"
+    }
+},
+{
+    "model": "users.skillcategory",
+    "pk": "51e9ebc8-4513-4811-bacf-5dcc40f2cf31",
+    "fields": {
+        "name": "Backend"
+    }
+},
+{
+    "model": "users.skillcategory",
+    "pk": "54b95d90-387b-40d9-875a-aaec74df912f",
+    "fields": {
+        "name": "UI/UX Design"
+    }
+},
+{
+    "model": "users.skillcategory",
+    "pk": "823a0538-e4ae-4c6c-b5bb-8b5fa30599f8",
+    "fields": {
+        "name": "Game Dev"
+    }
+},
+{
+    "model": "users.skillcategory",
+    "pk": "ab26c74f-3aa5-45b1-b2cb-0ec7d2f070cf",
+    "fields": {
+        "name": "Databases"
+    }
+},
+{
+    "model": "users.skillcategory",
+    "pk": "acc58a85-0042-4e29-af6c-96e6bb05d784",
+    "fields": {
+        "name": "Frontend"
+    }
+}
+]
