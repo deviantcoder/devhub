@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -76,12 +78,21 @@ def add_skill(request):
 
             obj, created = ProfileSkill.objects.get_or_create(profile=profile, skill=skill)
 
-            if created:
-                messages.success(request, f'{obj.name} was added')
-            else:
-                messages.warning(request, f'{obj.name} is already added')
+            message = f'{obj.name} '
+            message += 'was added' if created else 'is already added'
 
-            return HttpResponse(status=204, headers={'HX-Trigger': 'skillListChanged'})
+            return HttpResponse(
+                status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        'skillListChanged': None,
+                        'showMessage': {
+                            'text': message,
+                            'type': 'success'
+                        },
+                    })
+                }
+            )
 
     form = ProfileSkillForm()
 
@@ -98,8 +109,21 @@ def delete_skill(request, pk):
 
     if request.method == 'POST':
         skill.delete()
-        messages.success(request, 'Skill was deleted')
-        return HttpResponse(status=204, headers={'HX-Trigger': 'skillListChanged'})
+        
+        message = f'{skill.name} was deleted'
+
+        return HttpResponse(
+            status=204,
+            headers={
+                'HX-Trigger': json.dumps({
+                    'skillListChanged': None,
+                    'showMessage': {
+                        'text': message,
+                        'type': 'danger',
+                    },
+                })
+            }
+        )
 
     context = {
         'skill': skill
