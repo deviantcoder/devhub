@@ -30,8 +30,6 @@ class Profile(models.Model):
         ]
     )
 
-    skills = models.ManyToManyField('Skill')
-
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     id = models.UUIDField(default=uuid4, unique=True, editable=False, primary_key=True)
@@ -69,3 +67,20 @@ class Skill(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class ProfileSkill(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='skills')
+    skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
+
+    id = models.UUIDField(default=uuid4, unique=True, editable=False, primary_key=True)
+
+    class Meta:
+        unique_together = ('profile', 'skill')
+
+    def __str__(self):
+        return self.profile.user.username
+    
+    @property
+    def name(self):
+        return self.skill.name

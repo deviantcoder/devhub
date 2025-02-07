@@ -36,16 +36,23 @@
 
                 <div class="col-md-12 mb-4">
                     <h3>Skills</h3>
-                    <a href="" class="text-decoration-none text-muted">
-                        <i class="fas fa-edit fa-lg"></i>
-                    </a>
-                    <div class="skills-list">
-                        <span>Python</span>
-                        <span>JavaScript</span>
-                        <span>HTML/CSS</span>
-                        <span>Django</span>
-                        <span>React</span>
-                        <span>Node.js</span>
+
+                    <button 
+                        type="button" 
+                        class="btn btn-info radius-md"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal"
+                        hx-get="{% url 'users:add_skill' %}"
+                        hx-target="#dialog"
+                    >
+                        Add a skill
+                    </button>
+
+                    <div class="skills-list mt-2" 
+                    hx-get="{% url 'users:skill_list' %}"
+                    hx-trigger="load, skillListChanged from:body"
+                    >
+                        <span>Loading...</span>
                     </div>
                 </div>
 

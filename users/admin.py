@@ -29,3 +29,6 @@ class SkillInline(admin.StackedInline):
 @admin.register(SkillCategory)
 class SkillCategoryAdmin(admin.ModelAdmin):
     inlines = [SkillInline]
+
+
+admin.site.register(ProfileSkill)

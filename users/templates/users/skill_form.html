@@ -1,0 +1,21 @@
+{% block content %}
+
+<form hx-post="{% url 'users:add_skill' %}" class="modal-content">
+    {% csrf_token %}
+
+    <div class="modal-header">
+        <h4>Add Skill</h4>
+    </div>
+
+    <div class="modal-body">
+        {{ form.as_p }}
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary radius-md" type="submit">Add</button>
+        <button type="button" class="btn btn-secondary radius-md" data-bs-dismiss="modal">Close</button>
+    </div>
+    
+</form>
+
+{% endblock content %}

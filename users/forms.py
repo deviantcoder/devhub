@@ -54,3 +54,19 @@ class ProfileForm(forms.ModelForm):
         elif self.instance and self.instance.pk and self.instance.country:
             self.fields['city'].queryset = City.objects.filter(country=self.instance.country)
             self.initial['city'] = self.instance.city
+
+
+class ProfileSkillForm(forms.ModelForm):
+    skill = forms.ModelChoiceField(
+        queryset=Skill.objects.all(),
+        required=True,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control'
+            }
+        )
+    )
+
+    class Meta:
+        model = ProfileSkill
+        fields = ['skill']
