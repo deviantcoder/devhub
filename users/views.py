@@ -38,8 +38,19 @@ def edit_profile(request):
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Profile was updated')
-            return redirect('/')
+
+            return HttpResponse(
+                status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        'profileInfoChanged': None,
+                        'showMessage': {
+                            'text': 'Profile was updated',
+                            'type': 'success'
+                        },
+                    })
+                }
+            )
 
     form = ProfileForm(instance=profile)
 
@@ -48,6 +59,15 @@ def edit_profile(request):
     }
 
     return render(request, 'users/edit_profile.html', context)
+
+
+@login_required(login_url='account_login')
+def profile_info(request):
+    profile = request.user.profile
+    context = {
+        'profile': profile
+    }
+    return render(request, 'users/includes/profile_info.html', context)
 
 
 def load_cities(request):

@@ -1,0 +1,11 @@
+<img src="{{ profile.image.url }}" alt="Profile Picture" class="profile-image">
+<h3 class="text-center">{{ profile.get_name }}</h3>
+<p class="text-center text-muted">@{{ profile.user.username }}</p>
+<p>{{ profile.get_bio }}</p>
+<p>{{ profile.get_location }}</p>
+
+<div class="social-icons text-center mb-3">
+    <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
+    <a href="#"><i class="fab fa-github fa-lg"></i></a>
+    <a href="#"><i class="fab fa-linkedin fa-lg"></i></a>
+</div>
