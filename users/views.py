@@ -9,14 +9,21 @@ from .models import *
 from cities_light.models import City
 
 
+def htmx_http_response(status_code: int, message: dict, event: str):
+    return HttpResponse(
+        status=status_code,
+        headers={
+            'HX-Trigger': json.dumps({
+                event: None,
+                'showMessage': message,
+            })
+        }
+    )
+
+
 @login_required(login_url='account_login')
 def account(request):
-    profile = request.user.profile
-    context = {
-        'profile': profile,
-    }
-
-    return render(request, 'users/account.html', context)
+    return render(request, 'users/account.html')
 
 
 def skill_list(request):
@@ -39,18 +46,12 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
 
-            return HttpResponse(
-                status=204,
-                headers={
-                    'HX-Trigger': json.dumps({
-                        'profileInfoChanged': None,
-                        'showMessage': {
-                            'text': 'Profile was updated',
-                            'type': 'success'
-                        },
-                    })
-                }
-            )
+            message = {
+                'text': 'Profile was updated',
+                'type': 'success'
+            }
+
+            return htmx_http_response(204, message, event='profileInfoChanged')
 
     form = ProfileForm(instance=profile)
 
@@ -88,6 +89,24 @@ def load_cities(request):
     return render(request, 'users/city_options.html', context)
 
 
+def load_skills(request):
+    category_id = request.GET.get('category')
+
+    if not category_id:
+        return HttpResponse("<option value=''>No available skills for this category</option>")
+    
+    skills = Skill.objects.filter(category_id=category_id)
+
+    if not skills.exists():
+        return HttpResponse("<option value=''>No available skills for this category</option>")
+    
+    context = {
+        'skills': skills,
+    }
+
+    return render(request, 'users/skill_options.html', context)
+
+
 @login_required(login_url='account_login')
 def add_skill(request):
     if request.method == 'POST':
@@ -98,21 +117,12 @@ def add_skill(request):
 
             obj, created = ProfileSkill.objects.get_or_create(profile=profile, skill=skill)
 
-            message = f'{obj.name} '
-            message += 'was added' if created else 'is already added'
+            message = {
+                'text': obj.name + ' was added' if created else 'is already added',
+                'type': 'success' if created else 'danger'
+            }
 
-            return HttpResponse(
-                status=204,
-                headers={
-                    'HX-Trigger': json.dumps({
-                        'skillListChanged': None,
-                        'showMessage': {
-                            'text': message,
-                            'type': 'success'
-                        },
-                    })
-                }
-            )
+            return htmx_http_response(204, message, event='skillListChanged')
 
     form = ProfileSkillForm()
 
@@ -129,21 +139,13 @@ def delete_skill(request, pk):
 
     if request.method == 'POST':
         skill.delete()
-        
-        message = f'{skill.name} was deleted'
 
-        return HttpResponse(
-            status=204,
-            headers={
-                'HX-Trigger': json.dumps({
-                    'skillListChanged': None,
-                    'showMessage': {
-                        'text': message,
-                        'type': 'danger',
-                    },
-                })
-            }
-        )
+        message = {
+            'text': f'{skill.name}',
+            'type': 'danger'
+        }
+
+        return htmx_http_response(204, message, event='skillListChanged')
 
     context = {
         'skill': skill

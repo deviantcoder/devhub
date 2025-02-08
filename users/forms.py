@@ -57,8 +57,20 @@ class ProfileForm(forms.ModelForm):
 
 
 class ProfileSkillForm(forms.ModelForm):
+    category = forms.ModelChoiceField(
+        queryset=SkillCategory.objects.all(),
+        required=True,
+        widget=forms.Select(
+            attrs={
+                'hx-get': '/load_skills/',
+                'hx-target': '#id_skill',
+                'class': 'form-control'
+            }
+        )
+    )
+
     skill = forms.ModelChoiceField(
-        queryset=Skill.objects.all(),
+        queryset=Skill.objects.none(),
         required=True,
         widget=forms.Select(
             attrs={
@@ -69,4 +81,11 @@ class ProfileSkillForm(forms.ModelForm):
 
     class Meta:
         model = ProfileSkill
-        fields = ['skill']
+        fields = ['category', 'skill']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if 'category' in self.data and self.data.get('category'):
+            category_id = self.data.get('category')
+            self.fields['skill'].queryset = Skill.objects.filter(category_id=category_id)
