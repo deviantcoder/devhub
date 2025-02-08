@@ -40,6 +40,10 @@ class Profile(models.Model):
     def get_name(self):
         return self.display_name if self.display_name else self.user.username
     
+    @property
+    def get_username(self):
+        return self.user.username
+    
     def get_location(self):
         data = [
             self.city.name if self.city else None,
@@ -84,3 +88,29 @@ class ProfileSkill(models.Model):
     @property
     def name(self):
         return self.skill.name
+    
+
+class Social(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    id = models.UUIDField(default=uuid4, unique=True, editable=False, primary_key=True)
+
+    def __str__(self):
+        return self.name
+    
+
+class ProfileSocial(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='socials')
+    social = models.ForeignKey(Social, on_delete=models.CASCADE)
+    url = models.URLField(max_length=100, null=True)
+
+    id = models.UUIDField(default=uuid4, unique=True, editable=False, primary_key=True)
+
+    class Meta:
+        unique_together = ('profile', 'social')
+
+    def __str__(self):
+        return self.profile.get_username
+    
+    @property
+    def name(self):
+        return self.social.name

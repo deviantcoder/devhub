@@ -32,3 +32,11 @@ class SkillCategoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ProfileSkill)
+
+
+admin.site.register(Social)
+
+
+@admin.register(ProfileSocial)
+class ProfileSocialAdmin(admin.ModelAdmin):
+    list_display = ['profile', 'social']

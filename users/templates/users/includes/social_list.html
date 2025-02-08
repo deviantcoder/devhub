@@ -1,0 +1,17 @@
+<div class="social-icons mb-3 d-flex flex-wrap justify-content-center gap-3">
+    {% for social in socials %}
+        <div class="d-flex flex-wrap justify-content-center gap-1">
+            <a href="#"><i class="fab fa-{{ social.social.name }} fa-lg"></i></a>
+            <button
+                class="btn btn-danger btn-sm radius-md"
+                type="button"
+                hx-get="{% url 'users:delete_social' social.id %}"
+                hx-target="#dialog"
+                data-bs-toggle="modal"
+                data-bs-target="#modal"
+            >
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    {% endfor %}
+</div>

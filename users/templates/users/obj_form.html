@@ -1,14 +1,18 @@
 {% block content %}
 
-<form hx-post="{% url 'users:delete_skill' skill.id %}" class="modal-content">
+<form hx-post="{{ url }}" class="modal-content">
     {% csrf_token %}
 
     <div class="modal-header">
-        <h4>Delete a skill: {{ skill.skill.name }}</h4>
+        <h4>Add {{ obj_name }}</h4>
+    </div>
+
+    <div class="modal-body">
+        {{ form.as_p }}
     </div>
 
     <div class="modal-footer">
-        <button class="btn btn-danger radius-md" type="submit">Delete</button>
+        <button class="btn btn-primary radius-md" type="submit">Add</button>
         <button type="button" class="btn btn-secondary radius-md" data-bs-dismiss="modal">Close</button>
     </div>
     

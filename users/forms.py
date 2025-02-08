@@ -1,4 +1,3 @@
-import uuid
 from django import forms
 from allauth.account.forms import LoginForm, SignupForm
 from django.forms import inlineformset_factory
@@ -89,3 +88,16 @@ class ProfileSkillForm(forms.ModelForm):
         if 'category' in self.data and self.data.get('category'):
             category_id = self.data.get('category')
             self.fields['skill'].queryset = Skill.objects.filter(category_id=category_id)
+
+
+class ProfileSocialForm(forms.ModelForm):
+    class Meta:
+        model = ProfileSocial
+        fields = ['social', 'url']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.update({
+                'class': 'form-control',
+            })

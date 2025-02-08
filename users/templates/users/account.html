@@ -6,7 +6,8 @@
     <div class="row">
         <div class="col-md-4">
             <div class="profile-card text-center shadow position-relative p-3">
-
+                
+                <!-- edit profile -->
                 <button 
                     type="button" 
                     class="btn position-absolute top-0 end-0 m-3 text-decoration-none text-muted"
@@ -21,8 +22,26 @@
                 <div class="profile-info" hx-get="{% url 'users:profile_info' %}" hx-trigger="load, profileInfoChanged from:body">
                     {% include 'users/includes/profile_info.html' %}
                 </div>
+
+                <div class="socials" hx-get="{% url 'users:social_list' %}" hx-trigger="load, socialListChanged from:body">
+                    {% include 'users/includes/social_list.html' %}
+                </div>
+
+                <!-- add social -->
+                <button
+                    type="button"
+                    class="btn btn-primary btn-sm radius-md mb-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal"
+                    hx-get="{% url 'users:add_social' %}"
+                    hx-target="#dialog"
+                >
+                    <i class="fas fa-plus"></i> Add social
+                </button>
             
-                <button class="btn btn-primary radius-md w-100">Send Message</button>
+                <button class="btn btn-primary radius-md w-100">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
             </div>
             
         </div>
@@ -39,13 +58,13 @@
 
                     <button 
                         type="button" 
-                        class="btn btn-info radius-md"
+                        class="btn btn-primary btn-sm radius-md"
                         data-bs-toggle="modal"
                         data-bs-target="#modal"
                         hx-get="{% url 'users:add_skill' %}"
                         hx-target="#dialog"
                     >
-                        Add a skill
+                        <i class="fas fa-plus"></i> Add skill
                     </button>
 
                     <div class="skills-list mt-2" 
