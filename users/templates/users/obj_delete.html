@@ -1,13 +1,13 @@
 {% block content %}
 
-<form hx-post="{{ url }}" class="modal-content">
+<form hx-post="{{ url }}" class="modal-content radius-md">
     {% csrf_token %}
 
     <div class="modal-header">
         <h4>Delete a {{ obj_name }}: {{ obj_name_value }}</h4>
     </div>
 
-    <div class="modal-footer">
+    <div class="modal-body text-center">
         <button class="btn btn-danger radius-md" type="submit">Remove</button>
         <button type="button" class="btn btn-secondary radius-md" data-bs-dismiss="modal">Close</button>
     </div>

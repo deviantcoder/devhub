@@ -1,17 +1,14 @@
 {% block content %}
 
-<form hx-post="{{ url }}" class="modal-content">
+<form hx-post="{{ url }}" class="modal-content radius-md">
     {% csrf_token %}
 
     <div class="modal-header">
         <h4>Add {{ obj_name }}</h4>
     </div>
 
-    <div class="modal-body">
+    <div class="modal-body text-center">
         {{ form.as_p }}
-    </div>
-
-    <div class="modal-footer">
         <button class="btn btn-primary radius-md" type="submit">Add</button>
         <button type="button" class="btn btn-secondary radius-md" data-bs-dismiss="modal">Close</button>
     </div>

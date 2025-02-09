@@ -4,9 +4,13 @@ from . import views
 app_name = 'users'
 
 urlpatterns = [
-    path('', views.account, name='account'),
+    path('account/', views.account, name='account'),
+    path('logout/', views.logout_user, name='logout'),
+    path('', views.profiles, name='profiles'),
+
     path('profile-info/', views.profile_info, name='profile_info'),
     path('edit-profile/', views.edit_profile, name='edit_profile'),
+    path('profile-overview/<str:pk>/', views.profile_overview, name='profile_overview'),
 
     path('load_cities/', views.load_cities, name='load_cities'),
 

@@ -1,0 +1,102 @@
+{% extends 'layouts/blank.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Profiles</h2>
+
+    <div class="row">
+        
+        {% for profile in profiles %}
+
+            <div class="col-md-4 mb-4">
+                <div class="card shadow p-3 radius-md"
+                {% if request.user.profile == profile %}
+                    style="border: 5px solid rgb(0, 189, 0)"
+                {% endif %}
+                >
+                {% if request.user.profile == profile %}
+                <span class="position-absolute text-white top-0 end-0 m-3 text-sm bg-cyan radius-md p-1">
+                    Your profile
+                </span>
+                {% endif %}
+                    <div class="d-flex align-items-center">
+                        <img src="{{ profile.image.url }}" alt="Profile Picture" class="profile-img">
+                        <div class="ms-3">
+                            <h5 class="mb-1">{{ profile.get_name }}</h5>
+                            <p class="text-muted mb-0">{{ profile.get_bio }}</p>
+                        </div>
+                    </div>
+                    <p class="profile-description mt-3 mb-2">
+                        {% if profile.about_info %}
+                            {{ profile.about_info|slice:50 }}...
+                        {% else %}
+                            No description yet.
+                        {% endif %}
+                    </p>
+                    
+                    <div class="mb-3">
+                        {% for skill in profile.get_skills|slice:3 %}
+                            <a href="" class="tag text-decoration-none radius-md">#{{ skill.name }}</a>
+                        {% endfor %}
+                        {% if profile.get_skills.count and profile.get_skills.count > 3 %}
+                            <small style="color: rgb(144, 189, 202);">and more...</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="d-flex flex-column flex-sm-row gap-2">
+                        <a href="#" class="btn btn-primary btn-sm radius-md w-100 w-sm-50">
+                            <i class="fas fa-user me-1"></i> View Profile
+                        </a>
+                    
+                        <button
+                            class="btn btn-info btn-sm radius-md w-100 w-sm-50"
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modal"
+                            hx-get="{% url 'users:profile_overview' profile.id %}"
+                            hx-target="#dialog"
+                        >
+                            <i class="fas fa-search me-1"></i> Quick overview
+                        </button>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">
+                    &#10094;&#10094;
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" tabindex="-1">
+                    &#10094;
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    &#10095;
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    &#10095;&#10095;
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+
+{% endblock content %}

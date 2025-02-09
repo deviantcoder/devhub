@@ -4,15 +4,15 @@ body {
 }
 
 .radius-sm {
-    border-radius: 10px;
+    border-radius: 10px !important;
 }
 
 .radius-md {
-    border-radius: 20px;
+    border-radius: 20px !important;
 }
 
 .radius-lg {
-    border-radius: 50px;
+    border-radius: 50px !important;
 }
 
 .profile-card {
@@ -59,7 +59,6 @@ body {
     background-color: #e9e9fd;
     border-radius: 50px;
     padding: 10px 20px;
-    /* border: 1px solid #ccc; */
 }
 .project-tag {
     font-size: 13px;
@@ -67,4 +66,43 @@ body {
     background-color: #cff5ff;
     padding: 5px;
     border-radius: 20px;
+}
+
+.profile-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.card {
+    border-radius: 10px;
+}
+.tag {
+    display: inline-block;
+    background-color: #E9E9FD;
+    color: #468191;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.tag:hover {
+    background-color: #000;
+    color: #fff;
+}
+.profile-description {
+    color: gray;
+    font-size: small;
+}
+
+@media (min-width: 992px) {
+    .bg-dimmed {
+        background-color: #28454d;
+    }
+}
+.text-sm {
+    font-size: 12px;
+}
+
+.bg-cyan {
+    background-color: #a1deed;
 }

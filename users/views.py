@@ -2,6 +2,7 @@ import json
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.contrib import messages
 from django.http import HttpResponse
 from django.urls import reverse
@@ -178,9 +179,10 @@ def add_social(request):
         form = ProfileSocialForm(request.POST)
         if form.is_valid():
             social = form.cleaned_data.get('social')
+            url = form.cleaned_data.get('url')
             profile = request.user.profile
 
-            obj, created = ProfileSocial.objects.get_or_create(profile=profile, social=social)
+            obj, created = ProfileSocial.objects.get_or_create(profile=profile, social=social, url=url)
 
             print('\n', obj.name, '\n')
 
@@ -223,3 +225,33 @@ def delete_social(request, pk):
     }
 
     return render(request, 'users/obj_delete.html', context)
+
+
+@login_required(login_url='account_login')
+def logout_user(request):
+    if request.method == 'POST':
+        logout(request)
+        messages.success(request, 'Logged out')
+        return redirect('account_login')
+    
+    return render(request, 'users/logout.html')
+
+
+def profiles(request):
+    profiles = Profile.objects.all()
+
+    context = {
+        'profiles': profiles,
+    }
+
+    return render(request, 'users/profiles.html', context)
+
+
+def profile_overview(request, pk):
+    profile = get_object_or_404(Profile, id=pk)
+
+    context = {
+        'profile': profile,
+    }
+
+    return render(request, 'users/profile_overview.html', context)

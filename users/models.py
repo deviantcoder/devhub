@@ -50,6 +50,14 @@ class Profile(models.Model):
             self.country.name if self.country else None
         ]
         return ', '.join(filter(None, data))
+    
+    @property
+    def get_skills(self):
+        return self.skills.all()
+    
+    @property
+    def get_socials(self):
+        return self.socials.all()
         
     def get_bio(self):
         return self.bio if self.bio else ''
