@@ -11,6 +11,7 @@ urlpatterns = [
     path('profile-info/', views.profile_info, name='profile_info'),
     path('edit-profile/', views.edit_profile, name='edit_profile'),
     path('profile-overview/<str:pk>/', views.profile_overview, name='profile_overview'),
+    path('profile/<str:username>/', views.profile, name='profile'),
 
     path('load_cities/', views.load_cities, name='load_cities'),
 

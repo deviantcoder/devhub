@@ -25,7 +25,7 @@ def htmx_http_response(status_code: int, message: dict, event: str):
 
 @login_required(login_url='account_login')
 def account(request):
-    return render(request, 'users/account.html')
+    return render(request, 'users/account.html', {'page': 'account'})
 
 
 @login_required(login_url='account_login')
@@ -255,3 +255,14 @@ def profile_overview(request, pk):
     }
 
     return render(request, 'users/profile_overview.html', context)
+
+
+def profile(request, username):
+    profile = get_object_or_404(Profile, user__username=username)
+    context = {
+        'profile': profile,
+        'socials': profile.get_socials,
+        'skills': profile.get_skills,
+        'page': 'profile',
+    }
+    return render(request, 'users/profile.html', context)

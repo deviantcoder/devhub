@@ -6,36 +6,14 @@
     <div class="row">
         <div class="col-md-4">
             <div class="profile-card text-center shadow position-relative p-3 radius-md">
-                
-                <!-- edit profile -->
-                <button 
-                    type="button" 
-                    class="btn position-absolute top-0 end-0 m-3 text-decoration-none text-muted"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modal"
-                    hx-get="{% url 'users:edit_profile' %}"
-                    hx-target="#dialog"
-                >
-                    <i class="fas fa-edit fa-lg"></i>
-                </button>
 
-                <div class="profile-info" hx-get="{% url 'users:profile_info' %}" hx-trigger="load, profileInfoChanged from:body">
+                <div class="profile-info">
+                    {% include 'users/includes/profile_info.html' %}
                 </div>
 
-                <div class="socials" hx-get="{% url 'users:social_list' %}" hx-trigger="load, socialListChanged from:body">
+                <div class="socials">
+                    {% include 'users/includes/social_list.html' %}
                 </div>
-
-                <!-- add social -->
-                <button
-                    type="button"
-                    class="btn btn-primary btn-sm radius-md mb-3"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modal"
-                    hx-get="{% url 'users:add_social' %}"
-                    hx-target="#dialog"
-                >
-                    <i class="fas fa-plus"></i> Add social
-                </button>
             
                 <button class="btn btn-primary radius-md w-100">
                     <i class="fas fa-paper-plane"></i> Send Message
@@ -58,22 +36,8 @@
                 <div class="col-md-12 mb-4">
                     <h3>Skills</h3>
 
-                    <button 
-                        type="button" 
-                        class="btn btn-primary btn-sm radius-md"
-                        data-bs-toggle="modal"
-                        data-bs-target="#modal"
-                        hx-get="{% url 'users:add_skill' %}"
-                        hx-target="#dialog"
-                    >
-                        <i class="fas fa-plus"></i> Add skill
-                    </button>
-
-                    <div class="skills-list mt-2" 
-                    hx-get="{% url 'users:skill_list' %}"
-                    hx-trigger="load, skillListChanged from:body"
-                    >
-                        <span>Loading...</span>
+                    <div class="skills-list mt-2">
+                        {% include 'users/includes/skill_list.html' %}
                     </div>
                 </div>
 
