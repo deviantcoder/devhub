@@ -4,6 +4,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
+from django.contrib.postgres.search import SearchQuery, SearchVector, SearchRank, SearchHeadline
+from django.contrib.postgres.aggregates import StringAgg
+from django.db.models import Value, CharField
+from django.db.models.functions import Coalesce
 from django.http import HttpResponse
 from django.urls import reverse
 from .forms import *
@@ -184,8 +188,6 @@ def add_social(request):
 
             obj, created = ProfileSocial.objects.get_or_create(profile=profile, social=social, url=url)
 
-            print('\n', obj.name, '\n')
-
             message = {
                 'text': obj.name.capitalize() + ' link was added' if created else 'is already added',
                 'type': 'success' if created else 'danger'
@@ -238,10 +240,31 @@ def logout_user(request):
 
 
 def profiles(request):
-    profiles = Profile.objects.all()
+    search_query = request.GET.get('search_query')
+    
+    profiles = Profile.objects.annotate(
+        skills_text=Coalesce(
+            StringAgg('skills__skill__name', delimiter=' '),
+            Value(''),
+            output_field=CharField()
+        )
+    )
 
+    if search_query:
+        vector = SearchVector(
+            'display_name',
+            'bio',
+            'about_info',
+            'skills_text'
+        )
+        query = SearchQuery(search_query)
+        search_headline = SearchHeadline('about_info', query)
+
+        profiles = profiles.annotate(rank=SearchRank(vector, query)).annotate(headline=search_headline).filter(rank__gte=0.001).order_by('-rank')
+    
     context = {
         'profiles': profiles,
+        'search_query': search_query,
     }
 
     return render(request, 'users/profiles.html', context)
