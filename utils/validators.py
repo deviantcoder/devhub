@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 
-IMAGE_EXTENSIONS = ('jpg', 'jpeg', 'png', 'webm')
+IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webm']
 FILE_SIZE_LIMIT = 20
 
 
