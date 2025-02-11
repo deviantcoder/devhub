@@ -42,7 +42,7 @@
     </div>
 
     <div class="modal-footer">
-        <a href="" class="btn btn-primary radius-md">View Full Profile</a>
+        <a href="{% url 'users:profile' profile.get_username %}" class="btn btn-primary radius-md">View Full Profile</a>
         <button type="button" class="btn btn-secondary radius-md" data-bs-dismiss="modal">Close</button>
     </div>
 </div>

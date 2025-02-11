@@ -34,6 +34,9 @@ class Profile(models.Model):
     updated = models.DateTimeField(auto_now=True)
     id = models.UUIDField(default=uuid4, unique=True, editable=False, primary_key=True)
 
+    class Meta:
+        ordering = ['created']
+
     def __str__(self):
         return self.user.username
     

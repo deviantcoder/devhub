@@ -13,6 +13,7 @@ from django.urls import reverse
 from .forms import *
 from .models import *
 from cities_light.models import City
+from utils.pagination import pagination
 
 
 def htmx_http_response(status_code: int, message: dict, event: str):
@@ -240,7 +241,7 @@ def logout_user(request):
 
 
 def profiles(request):
-    search_query = request.GET.get('search_query')
+    search_query = request.GET.get('search_query') or ''
     
     profiles = Profile.objects.annotate(
         skills_text=Coalesce(
@@ -248,7 +249,7 @@ def profiles(request):
             Value(''),
             output_field=CharField()
         )
-    )
+    ).order_by('created')
 
     if search_query:
         vector = SearchVector(
@@ -262,8 +263,13 @@ def profiles(request):
 
         profiles = profiles.annotate(rank=SearchRank(vector, query)).annotate(headline=search_headline).filter(rank__gte=0.001).order_by('-rank')
     
+    profiles, custom_range, pg = pagination(request, profiles, 2)
+
     context = {
         'profiles': profiles,
+        'search_query': search_query,
+        'custom_range': custom_range,
+        'pg': pg,
         'search_query': search_query,
     }
 

@@ -3,11 +3,12 @@
 {% block content %}
 
 <div class="container mt-5">
-    <h2 class="mb-4 text-center">Profiles</h2>
-
-    {% if search_query %}
-        <span>Results: {{ profiles|length }}</span>
-    {% endif %}
+    <div class="mb-4 text-center">
+        <h2>Profiles</h2>
+        {% if search_query %}
+            <span>Results: {{ profiles|length }}</span>
+        {% endif %}
+    </div>
 
     <div class="row">
         
@@ -73,33 +74,7 @@
 
     </div>
 
-    <nav>
-        <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">
-                    &#10094;&#10094;
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#" tabindex="-1">
-                    &#10094;
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    &#10095;
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    &#10095;&#10095;
-                </a>
-            </li>
-        </ul>
-    </nav>
+    {% include 'includes/pagination.html' with queryset=profiles %}
 
 </div>
 

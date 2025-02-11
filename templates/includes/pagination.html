@@ -1,0 +1,73 @@
+{% if queryset.has_other_pages %}
+
+<nav>
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link {% if not queryset.has_previous %}disabled{% endif %}" href="
+                {% if search_query %}
+                    ?search_query={{search_query}}&page=1
+                {% else %}
+                    ?page=1
+                {% endif %}
+            ">
+                &#10094;&#10094;
+            </a>
+        </li>
+
+        {% if queryset.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="
+                    {% if search_query %}
+                        ?search_query={{ search_query }}&page={{ queryset.previous_page_number }}
+                    {% else %}
+                        ?page={{ queryset.previous_page_number }}
+                    {% endif %}
+                ">
+                    &#10094;
+                </a>
+            </li>
+        {% endif %}
+
+        {% for page in custom_range %}
+            <li class="page-item">
+                <a class="page-link {% if page == queryset.number %}active{% endif %}" href="
+                    {% if search_query %}
+                        ?search_query={{search_query}}&page={{page}}
+                    {% else %}
+                        ?page={{page}}
+                    {% endif %}
+                ">
+                    {{ page }}
+                </a>
+            </li>
+        {% endfor %}
+        
+        {% if queryset.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="
+                    {% if search_query %}
+                        ?search_query={{ search_query }}&page={{ queryset.next_page_number }}
+                    {% else %}
+                        ?page={{ queryset.next_page_number }}
+                    {% endif %}
+                ">
+                    &#10095;
+                </a>
+            </li>
+        {% endif %}     
+
+        <li class="page-item">
+            <a class="page-link {% if not queryset.has_next %}disabled{% endif %}" href="
+                {% if search_query %}
+                    ?search_query={{search_query}}&page={{ pg.num_pages }}
+                {% else %}
+                    ?page={{ pg.num_pages }}
+                {% endif %}
+            ">
+                &#10095;&#10095;
+            </a>
+        </li>
+    </ul>
+</nav>
+
+{% endif %}
