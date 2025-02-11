@@ -263,7 +263,7 @@ def profiles(request):
 
         profiles = profiles.annotate(rank=SearchRank(vector, query)).annotate(headline=search_headline).filter(rank__gte=0.001).order_by('-rank')
     
-    profiles, custom_range, pg = pagination(request, profiles, 2)
+    profiles, custom_range, pg = pagination(request, profiles, 6)
 
     context = {
         'profiles': profiles,

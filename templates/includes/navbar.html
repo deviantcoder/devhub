@@ -54,12 +54,11 @@
                     </li>
                 {% endif %}
             </ul>
-            <form class="d-flex">
+            <form class="d-flex" action="{% url 'users:profiles' %}">
                 <input name="search_query" class="form-control me-2 radius-md" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-light radius-md d-flex align-items-center" type="submit">
                     <i class="fas fa-search me-2"></i> Search
                 </button>
-                
             </form>
         </div>
     </div>

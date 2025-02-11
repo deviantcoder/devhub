@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
 
     'users.apps.UsersConfig',
+    'projects.apps.ProjectsConfig',
 
     'cities_light',
 ]
