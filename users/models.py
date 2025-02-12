@@ -61,7 +61,12 @@ class Profile(models.Model):
     @property
     def get_socials(self):
         return self.socials.all()
-        
+    
+    @property
+    def get_projects(self):
+        return self.projects.all()
+    
+    @property
     def get_bio(self):
         return self.bio if self.bio else ''
 

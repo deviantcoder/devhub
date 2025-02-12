@@ -15,7 +15,7 @@ def upload_to(instance, filename):
 
 
 class Project(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='projects')
 
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
@@ -28,7 +28,7 @@ class Project(models.Model):
     id = models.UUIDField(default=uuid4, unique=True, editable=False, primary_key=True)
 
     class Meta:
-        ordering = ['created']
+        ordering = ['-created']
 
     def __str__(self):
         return self.title

@@ -1,6 +1,7 @@
 body {
     font-family: 'JetBrains Mono', monospace;
-    background-color: #F8FAFD;
+    /* background-color: #F8FAFD; */
+    background-color: #010409;
 }
 
 .radius-sm {
@@ -19,6 +20,7 @@ body {
     border: 1px solid #e1e1e1;
     padding: 20px;
     border-radius: 8px;
+    background-color: #212529;
 }
 .profile-image {
     width: 150px;
@@ -31,7 +33,7 @@ body {
 }
 .social-icons a {
     font-size: 1.5rem;
-    color: #333;
+    color: snow;
     text-decoration: none;
 }
 .social-icons a:hover {
@@ -41,6 +43,7 @@ body {
     border: 1px solid #e1e1e1;
     border-radius: 8px;
     margin-bottom: 20px;
+    background-color: #212529;
 }
 .project-image-lg {
     width: 100%;
@@ -61,7 +64,7 @@ body {
 }
 .skills-list span {
     font-weight: bold;
-    background-color: #e9e9fd;
+    background-color: #4f4f64;
     border-radius: 50px;
     padding: 10px 20px;
 }
@@ -90,15 +93,15 @@ body {
 }
 .tag {
     display: inline-block;
-    background-color: #E9E9FD;
-    color: #468191;
+    background-color: #4f4f64;
+    color: #DEE2E6;
     padding: 5px 10px;
     font-size: 0.9rem;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 .tag:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
 }
 .profile-description {
     color: gray;

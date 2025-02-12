@@ -1,0 +1,34 @@
+{% for project in projects %}
+<div class="col-md-6 mb-4">
+    <div class="project-card shadow position-relative">
+        
+        <div class="position-absolute top-0 end-0 m-2">
+            <a href="" class="btn btn-sm btn-primary radius-md">
+                <i class="fas fa-edit"></i> Edit
+            </a>
+            <button type="button" 
+                class="btn btn-sm btn-danger radius-md"
+                hx-get="{% url 'projects:delete_project' project.id %}"
+                hx-target="#dialog"
+                data-bs-toggle="modal"
+                data-bs-target="#modal"
+            >
+                <i class="fas fa-edit"></i> Delete
+            </button>
+        </div>
+
+        <img src="../static/img/c2.png" alt="Project 1" class="project-image">
+        <div class="project-info">
+            <h5>{{ project.title }}</h5>
+            <p class="text-muted">
+                by <a href="" class="text-decoration-none">{{ project.profile.get_username }}</a>
+            </p>
+            <div class="tags">
+                <span class="tag mt-1 radius-md">#Python</span>
+                <span class="tag radius-md">#Django</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}

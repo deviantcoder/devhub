@@ -50,7 +50,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h3>About Me</h3>
-                            <p>{{ request.user.profile.about_info }}</p>
+                            <p>{{ profile.about_info }}</p>
                         </div>
                     </div>
                 </div>
@@ -70,8 +70,8 @@
                     </button>
 
                     <div class="skills-list mt-2" 
-                    hx-get="{% url 'users:skill_list' %}"
-                    hx-trigger="load, skillListChanged from:body"
+                        hx-get="{% url 'users:skill_list' %}"
+                        hx-trigger="load, skillListChanged from:body"
                     >
                         <span>Loading...</span>
                     </div>
@@ -79,66 +79,23 @@
 
                 <div class="col-md-12 mb-4">
                     <h3>Projects</h3>
-                    <div class="row">
-                        <!-- Project 1 -->
-                        <div class="col-md-6 mb-4">
-                            <div class="project-card shadow">
-                                <img src="../static/img/c2.png" alt="Project 1" class="project-image">
-                                <div class="project-info">
-                                    <h5>Project Name 1</h5>
-                                    <p class="text-muted">by Username</p>
-                                    <div class="tags">
-                                        <span class="project-tag mt-1">Python</span>
-                                        <span class="project-tag">Django</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Project 2 -->
-                        <div class="col-md-6 mb-4">
-                            <div class="project-card shadow">
-                                <img src="../static/img/c3.png" alt="Project 2" class="project-image">
-                                <div class="project-info">
-                                    <h5>Project Name 2</h5>
-                                    <p class="text-muted">by Username</p>
-                                    <div class="tags">
-                                        <span class="project-tag mt-1">Python</span>
-                                        <span class="project-tag">Django</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <button 
+                        type="button" 
+                        class="btn btn-primary btn-sm radius-md mb-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal"
+                        hx-get="{% url 'projects:add_project' %}"
+                        hx-target="#dialog"
+                    >
+                        <i class="fas fa-plus"></i> Add project
+                    </button>
 
-                        <!-- Project 3 -->
-                        <div class="col-md-6 mb-4">
-                            <div class="project-card shadow">
-                                <img src="../static/img/c2.png" alt="Project 3" class="project-image">
-                                <div class="project-info">
-                                    <h5>Project Name 3</h5>
-                                    <p class="text-muted">by Username</p>
-                                    <div class="tags">
-                                        <span class="project-tag mt-1">Python</span>
-                                        <span class="project-tag">Django</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Project 4 -->
-                        <div class="col-md-6 mb-4">
-                            <div class="project-card shadow">
-                                <img src="../static/img/c3.png" alt="Project 4" class="project-image">
-                                <div class="project-info">
-                                    <h5>Project Name 4</h5>
-                                    <p class="text-muted">by Username</p>
-                                    <div class="tags">
-                                        <span class="project-tag mt-1">Python</span>
-                                        <span class="project-tag">Django</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="row"
+                        hx-get="{% url 'projects:project_list' %}"
+                        hx-trigger="load, projectsChanged from:body"
+                    >
+                          
                     </div>
                 </div>
             </div>

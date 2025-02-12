@@ -14,23 +14,18 @@ from .forms import *
 from .models import *
 from cities_light.models import City
 from utils.pagination import pagination
-
-
-def htmx_http_response(status_code: int, message: dict, event: str):
-    return HttpResponse(
-        status=status_code,
-        headers={
-            'HX-Trigger': json.dumps({
-                event: None,
-                'showMessage': message,
-            })
-        }
-    )
+from utils.htmx_response import htmx_http_response
 
 
 @login_required(login_url='account_login')
 def account(request):
-    return render(request, 'users/account.html', {'page': 'account'})
+    profile = request.user.profile
+    context = {
+        'profile': profile,
+        'page': 'account'
+    }
+
+    return render(request, 'users/account.html', context)
 
 
 @login_required(login_url='account_login')
@@ -106,7 +101,7 @@ def load_skills(request):
 @login_required(login_url='account_login')
 def skill_list(request):
     profile = request.user.profile
-    skills = profile.skills.all()
+    skills = profile.get_skills
 
     context = {
         'skills': skills,
@@ -163,13 +158,13 @@ def delete_skill(request, pk):
         'obj_name_value': skill.name,
     }
 
-    return render(request, 'users/obj_delete.html', context)
+    return render(request, 'obj/obj_delete.html', context)
 
 
 @login_required(login_url='account_login')
 def social_list(request):
     profile = request.user.profile
-    socials = profile.socials.all()
+    socials = profile.get_socials
 
     context = {
         'socials': socials,
@@ -227,7 +222,7 @@ def delete_social(request, pk):
         'obj_name_value': social.name,
     }
 
-    return render(request, 'users/obj_delete.html', context)
+    return render(request, 'obj/obj_delete.html', context)
 
 
 @login_required(login_url='account_login')
