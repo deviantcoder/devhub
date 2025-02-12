@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .models import Project
-from .forms import ProjectForm
+from .forms import ProjectForm, ProjectMediaFormSet
 from utils.htmx_response import htmx_http_response
 
 
@@ -25,13 +25,18 @@ def project_list(request):
 @login_required(login_url='account_login')
 def add_project(request):
     form = ProjectForm()
+    formset = ProjectMediaFormSet()
 
     if request.method == 'POST':
         form = ProjectForm(request.POST)
-        if form.is_valid():
+        formset = ProjectMediaFormSet(request.POST, request.FILES)
+        if form.is_valid() and formset.is_valid():
             project = form.save(commit=False)
             project.profile = request.user.profile
             project.save()
+
+            formset.instance = project
+            formset.save()
 
             message = {
                 'text': 'Project was added',
@@ -42,6 +47,7 @@ def add_project(request):
 
     context = {
         'form': form,
+        'formset': formset,
         'page': 'Add',
         'url': reverse('projects:add_project')
     }
@@ -53,11 +59,14 @@ def add_project(request):
 def edit_project(request, pk):
     project = get_object_or_404(Project, id=pk)
     form = ProjectForm(instance=project)
+    formset = ProjectMediaFormSet(instance=project)
 
     if request.method == 'POST':
         form = ProjectForm(request.POST, instance=project)
-        if form.is_valid():
+        formset = ProjectMediaFormSet(request.POST, request.FILES, instance=project)
+        if form.is_valid() and formset.is_valid():
             form.save()
+            formset.save()
 
             message = {
                 'text': f'{project.title} was changed',
@@ -68,6 +77,7 @@ def edit_project(request, pk):
 
     context = {
         'form': form,
+        'formset': formset,
         'page': 'Edit',
         'url': reverse('projects:edit_project', args=[project.id])
     }

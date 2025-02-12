@@ -1,5 +1,6 @@
 from django import forms
-from .models import Project
+from django.forms import inlineformset_factory
+from .models import Project, ProjectMedia
 
 
 class ProjectForm(forms.ModelForm):
@@ -11,3 +12,12 @@ class ProjectForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.update({'class': 'form-control'})
+
+
+ProjectMediaFormSet = inlineformset_factory(
+    Project,
+    ProjectMedia,
+    fields=['file'],
+    extra=1,
+    can_delete=True
+)

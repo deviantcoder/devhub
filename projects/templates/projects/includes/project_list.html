@@ -1,4 +1,7 @@
 {% for project in projects %}
+
+{% load static %}
+
 <div class="col-md-6 mb-4">
     <div class="project-card shadow position-relative">
         
@@ -23,7 +26,12 @@
             </button>
         </div>
 
-        <img src="../static/img/c2.png" alt="Project 1" class="project-image">
+        {% if project.get_media %}
+            <img src="{{ project.get_media.first.file.url }}" alt="Image" class="project-image">
+        {% else %}
+            <img src="{% static 'img/placeholder.jpg' %}" alt="Project 1" class="project-image">
+        {% endif %}
+
         <div class="project-info">
             <h5>{{ project.title }}</h5>
             <p class="text-muted">

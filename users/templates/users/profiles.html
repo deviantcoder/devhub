@@ -15,9 +15,9 @@
         {% for profile in profiles %}
 
             <div class="col-md-4 mb-4">
-                <div class="card shadow p-3 radius-md"
+                <div class="card shadow p-3 radius-md border-0"
                 {% if request.user.profile == profile %}
-                    style="border: 5px solid rgb(0, 189, 0)"
+                    style="border: 5px solid rgb(0, 189, 0) !important"
                 {% endif %}
                 >
                 {% if request.user.profile == profile %}

@@ -33,9 +33,13 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+    @property
+    def get_media(self):
+        return self.media.all() if self.media.exists() else None
+
 
 class ProjectMedia(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='media')
     file = models.FileField(
         upload_to=upload_to,
         validators=[
