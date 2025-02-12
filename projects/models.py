@@ -80,8 +80,8 @@ class ProjectStats(models.Model):
     id = models.UUIDField(default=uuid4, unique=True, editable=False, primary_key=True)
 
     class Meta:
-        verbose_name = 'Post Stats'
-        verbose_name_plural = 'Post Stats'
+        verbose_name = 'Project Stats'
+        verbose_name_plural = 'Project Stats'
 
     def __str__(self):
         return self.project.title

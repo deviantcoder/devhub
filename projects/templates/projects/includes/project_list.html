@@ -3,9 +3,15 @@
     <div class="project-card shadow position-relative">
         
         <div class="position-absolute top-0 end-0 m-2">
-            <a href="" class="btn btn-sm btn-primary radius-md">
+            <button type="button"
+                class="btn btn-sm btn-primary radius-md"
+                hx-get="{% url 'projects:edit_project' project.id %}"
+                hx-target="#dialog"
+                data-bs-toggle="modal"
+                data-bs-target="#modal"
+            >
                 <i class="fas fa-edit"></i> Edit
-            </a>
+            </button>
             <button type="button" 
                 class="btn btn-sm btn-danger radius-md"
                 hx-get="{% url 'projects:delete_project' project.id %}"

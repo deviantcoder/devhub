@@ -42,14 +42,37 @@ def add_project(request):
 
     context = {
         'form': form,
+        'page': 'Add',
+        'url': reverse('projects:add_project')
     }
 
     return render(request, 'projects/project_form.html', context)
 
 
 @login_required(login_url='account_login')
-def edit_project(request):
-    pass
+def edit_project(request, pk):
+    project = get_object_or_404(Project, id=pk)
+    form = ProjectForm(instance=project)
+
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, instance=project)
+        if form.is_valid():
+            form.save()
+
+            message = {
+                'text': f'{project.title} was changed',
+                'type': 'success'
+            }
+
+            return htmx_http_response(204, message, event='projectsChanged')
+
+    context = {
+        'form': form,
+        'page': 'Edit',
+        'url': reverse('projects:edit_project', args=[project.id])
+    }
+
+    return render(request, 'projects/project_form.html', context)
 
 
 @login_required(login_url='account_login')
