@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.template.loader import render_to_string
+from django.http import HttpResponse
 from .models import Project
 from .forms import ProjectForm, ProjectMediaFormSet
 from utils.htmx_response import htmx_http_response
@@ -30,6 +32,7 @@ def add_project(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST)
         formset = ProjectMediaFormSet(request.POST, request.FILES)
+
         if form.is_valid() and formset.is_valid():
             project = form.save(commit=False)
             project.profile = request.user.profile

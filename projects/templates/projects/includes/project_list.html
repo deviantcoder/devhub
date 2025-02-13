@@ -1,6 +1,6 @@
-{% for project in projects %}
-
 {% load static %}
+
+{% for project in projects %}
 
 <div class="col-md-6 mb-4">
     <div class="project-card shadow position-relative">
@@ -9,9 +9,9 @@
             <button type="button"
                 class="btn btn-sm btn-primary radius-md"
                 hx-get="{% url 'projects:edit_project' project.id %}"
-                hx-target="#dialog"
+                hx-target="#projectDialog"
                 data-bs-toggle="modal"
-                data-bs-target="#modal"
+                data-bs-target="#projectModal"
             >
                 <i class="fas fa-edit"></i> Edit
             </button>

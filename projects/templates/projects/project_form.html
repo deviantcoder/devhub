@@ -1,3 +1,4 @@
+
 {% block content %}
     
 <form 
@@ -13,17 +14,31 @@
         <h4>{{ page }} Project</h4>
     </div>
 
-    <div class="modal-body">
-        {{ form.as_p }}
+    <div class="modal-body d-flex gap-4">
+        <div class="w-50">
+            {{ form.as_p }}
+        </div>
 
-        <h5 class="mt-3">Upload Media</h5>
-        {{ formset.management_form }}
-        <div id="media-formset">
-            {% for form in formset %}
-                <div class="mb-2 p-2 border rounded">
-                    {{ form.as_p }}
+        <div class="w-50">
+            <h5 class="mt-3">Upload Media</h5>
+
+            {{ formset.management_form }}
+
+            <div id="media-formset">
+                {% for form in formset %}
+                    <div class="mb-2 p-2 border rounded media-form">
+                        {{ form.as_p }}
+                    </div>
+                {% endfor %}
+
+                <div id="empty-form" class="d-none">
+                    {{ formset.empty_form }}
                 </div>
-            {% endfor %}
+            </div>
+
+            <button id="add-more" type="button" class="btn btn-outline-primary mt-3">
+                Add Media
+            </button>
         </div>
     </div>
 
@@ -33,5 +48,37 @@
     </div>
     
 </form>
+
+<script>
+
+    var addMoreBtn = document.getElementById('add-more')
+    var totalNewForms = document.getElementById('id_media-TOTAL_FORMS')
+
+    addMoreBtn.addEventListener('click', add_new_form)
+    
+    function add_new_form(event) {
+        if (event) {
+            event.preventDefault()
+        }
+
+        var currentMediaForms = document.getElementsByClassName('media-form')
+
+        let currentFormCount = currentMediaForms.length
+
+        const formCopyTarget = document.getElementById('media-formset')
+        var copyEmptyFormEl = document.getElementById('empty-form').cloneNode(true)
+
+        copyEmptyFormEl.setAttribute('class', 'mb-2 p-2 border rounded media-form')
+        copyEmptyFormEl.setAttribute('id', `form-${currentFormCount}`)
+
+        const regex = new RegExp('__prefix__', 'g')
+        copyEmptyFormEl.innerHTML = copyEmptyFormEl.innerHTML.replace(regex, currentFormCount)
+
+        totalNewForms.setAttribute('value', currentFormCount + 1)
+
+        formCopyTarget.append(copyEmptyFormEl)
+    }
+    
+</script>
 
 {% endblock content %}

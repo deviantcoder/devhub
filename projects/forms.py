@@ -18,6 +18,6 @@ ProjectMediaFormSet = inlineformset_factory(
     Project,
     ProjectMedia,
     fields=['file'],
-    extra=1,
+    extra=0,
     can_delete=True
 )
