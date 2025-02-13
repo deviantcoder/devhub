@@ -34,7 +34,7 @@ def profile_info(request):
     context = {
         'profile': profile
     }
-    return render(request, 'users/includes/profile_info.html', context)
+    return render(request, 'users/partials/profile_info.html', context)
 
 
 @login_required(login_url='account_login')
@@ -107,7 +107,7 @@ def skill_list(request):
         'skills': skills,
     }
 
-    return render(request, 'users/includes/skill_list.html', context)
+    return render(request, 'users/partials/skill_list.html', context)
 
 
 @login_required(login_url='account_login')
@@ -170,7 +170,7 @@ def social_list(request):
         'socials': socials,
     }
 
-    return render(request, 'users/includes/social_list.html', context)
+    return render(request, 'users/partials/social_list.html', context)
 
 
 @login_required(login_url='account_login')

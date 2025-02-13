@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.template.loader import render_to_string
 from django.http import HttpResponse
+from django.utils.safestring import mark_safe
 from .models import Project
 from .forms import ProjectForm, ProjectMediaFormSet
 from utils.htmx_response import htmx_http_response
@@ -21,7 +22,7 @@ def project_list(request):
         'projects': projects,
     }
 
-    return render(request, 'projects/includes/project_list.html', context)
+    return render(request, 'projects/partials/project_list.html', context)
 
 
 @login_required(login_url='account_login')
